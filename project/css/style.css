@@ -1,0 +1,221 @@
+@font-face {
+  font-family: "Cafe24Ohsquareair";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202@1.0/Cafe24Ohsquareair.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  /* Color */
+  --white-color: #f7f7f7;
+  --grey-color: #4b4b4b;
+  --main-color: #e3caa5;
+  --accent-color: #ad8b73;
+  --background-color: #fffbe9;
+
+  /* Font Size */
+  --font-large: 18px;
+  --font-medium: 14px;
+  --font-small: 12px;
+  --font-micro: 10px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Cafe24Ohsquareair";
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--white-color);
+}
+
+button,
+button:focus {
+  /* border: none; */
+  cursor: pointer;
+  outline: none;
+  background-color: var(--white-color);
+  background-repeat: no-repeat;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+}
+
+input {
+  background-color: var(--white-color);
+}
+
+/* 로고 */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--accent-color);
+  padding: 10px 20px;
+  position: relative;
+}
+
+/* nav */
+.navbar {
+  padding: 0;
+  position: absolute;
+  left: 200px;
+  top: 22%;
+}
+
+.navbar_nav {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar_nav li {
+  margin-left: 20px;
+  font-size: var(--font-large);
+}
+
+.nav_link:hover {
+  padding: 5px;
+  background-color: var(--main-color);
+  border-radius: 5px;
+  color: var(--grey-color);
+}
+
+/* 로그인 회원가입 */
+.login {
+  margin-right: 5px;
+}
+
+/* 검색 */
+.middle_content {
+  width: 100%;
+  padding: 40px 15px;
+  margin-bottom: 100px;
+}
+
+.input {
+  width: 100%;
+  /* flex: 1 1 auto; */
+  /* min-width: 0; */
+  /* margin-bottom: 0; */
+  padding: 5px;
+  border-radius: 5px;
+}
+
+/* 상품리스트 */
+.card-img {
+  padding: 5px;
+}
+
+.product_list {
+  flex: 1 1 70%;
+}
+
+/* 장바구니 */
+.drop-area {
+  width: 100%;
+  height: 200px;
+  line-height: 200px;
+  background-color: var(--grey-color);
+  color: var(--white-color);
+  text-align: center;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.basket {
+  flex: 1 1 30%;
+}
+
+/* footer */
+footer {
+  width: 100%;
+  background-color: var(--accent-color);
+  padding: 40px 15px;
+  color: var(--white-color);
+}
+
+/* toggle */
+.toggle_all {
+  display: none;
+}
+
+.toggle_container {
+  top: 48px;
+  left: 0;
+  width: 100%;
+}
+
+.toggle_nav {
+  padding: 10px 20px 50px 20px;
+  background-color: var(--accent-color);
+}
+
+.toggle_nav li {
+  margin-bottom: 5px;
+  font-size: var(--font-large);
+}
+
+.toggle_link:hover {
+  padding: 5px;
+  background-color: var(--main-color);
+  border-radius: 5px;
+  color: var(--grey-color);
+}
+
+.toggle_loginAndJoin {
+  position: absolute;
+  top: 73%;
+  left: 20px;
+}
+
+.toggle_loginAndJoin button {
+  margin-right: 10px;
+}
+
+.toggle_btn {
+  display: none;
+  position: absolute;
+  right: 10px;
+  font-size: 25px;
+  padding: 0 10px;
+}
+
+.toggle_btn:hover {
+  background-color: var(--grey-color);
+  color: var(--white-color);
+}
+
+@media screen and (max-width: 990px) {
+  .navbar_nav {
+    display: none;
+  }
+
+  .login {
+    display: none;
+  }
+
+  .join {
+    display: none;
+  }
+
+  .toggle_btn {
+    display: block;
+  }
+}
+
+/* add class */
+.midFotDown {
+  top: 100%;
+}
