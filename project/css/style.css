@@ -56,6 +56,24 @@ input {
   background-color: var(--white-color);
 }
 
+/* 모달창 */
+.black-background {
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  z-index: 5; /* 5이상 써야됨 (bootstrap이 1~4까지 쓰고 있기 때문에, bootstrap의 모든 사항보다 앞에 존재하게 됨) */
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+.white-background {
+  background: white;
+  width: 80%;
+  margin: 100px auto;
+  padding: 20px;
+  border-radius: 10px;
+}
+
 /* 로고 */
 .header {
   display: flex;
@@ -149,6 +167,8 @@ footer {
 /* toggle */
 .toggle_all {
   display: none;
+  /* position: relative; */
+  z-index: 10;
 }
 
 .toggle_container {

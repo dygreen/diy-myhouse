@@ -10,11 +10,13 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="css/jquery-ui.min.css" />
+    <link rel="stylesheet" href="css/jquery-ui.css" />
+    <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/style.css " />
-    <link rel="stylesheet" href="resources1/css/jquery-ui.min.css" />
-    <link rel="stylesheet" href="resources1/css/bootstrap.css" />
     <script defer src="js/jquery-3.5.1.min 복사본.js"></script>
-    <script defer src="resources1/js/bootstrap.js"></script>
+    <script defer src="js/jquery-ui.js"></script>
+    <script defer src="js/bootstrap.js"></script>
     <script defer src="js/main.js"></script>
     <script
       defer
@@ -23,6 +25,26 @@
     <title>내집꾸미기</title>
   </head>
   <body>
+    <!-- 모달창 UI -->
+    <div class="black-background">
+      <div class="white-background">
+          <p>로그인하세요</p>
+          <form>
+            <div class="form-group">
+              <input type="email" class="form-control" placeholder="Email" id="email">
+              <p id="email-alert">이메일이 빈칸입니다.</p>
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control" placeholder="Password" id="password">
+              <p id="password-alert">비밀번호가 빈칸입니다.</p>
+            </div>
+            <button type="submit" class="btn btn-primary">로그인</button>
+            <button class="btn btn-danger" id="close">닫기</button>
+          </form>
+      </div>
+    </div>
+
+
     <header class="header">
       <!-- 로고 -->
       <a class="logo" href="index.html">
@@ -88,7 +110,6 @@
       </button>
     </header>
 
-    <div class="middleAndFooter">
       <div class="middle_content">
         <!-- 검색 -->
         <input type="text" class="input" placeholder="검색어를 입력해주세요." />
@@ -98,7 +119,7 @@
           <div class="product_list">
             <h1>모든 상품 리스트</h1>
             <div class="card_list" style="display: flex; width: 110%">
-              <div class="card" style="width: 20%; margin-right: 15px">
+              <!-- <div class="card" style="width: 20%; margin-right: 15px">
                 <img src="https://via.placeholder.com/600" class="card-img" />
                 <div class="card-body">
                   <h5 class="card-product">Card title</h5>
@@ -107,37 +128,7 @@
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item">price</li>
                 </ul>
-              </div>
-              <div class="card" style="width: 20%; margin-right: 15px">
-                <img src="https://via.placeholder.com/600" class="card-img" />
-                <div class="card-body">
-                  <h5 class="card-product">Card title</h5>
-                  <p class="card-brand">brand</p>
-                </div>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">price</li>
-                </ul>
-              </div>
-              <div class="card" style="width: 20%; margin-right: 15px">
-                <img src="https://via.placeholder.com/600" class="card-img" />
-                <div class="card-body">
-                  <h5 class="card-product">Card title</h5>
-                  <p class="card-brand">brand</p>
-                </div>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">price</li>
-                </ul>
-              </div>
-              <div class="card" style="width: 20%; margin-right: 15px">
-                <img src="https://via.placeholder.com/600" class="card-img" />
-                <div class="card-body">
-                  <h5 class="card-product">Card title</h5>
-                  <p class="card-brand">brand</p>
-                </div>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">price</li>
-                </ul>
-              </div>
+              </div> -->
             </div>
           </div>
 
@@ -165,7 +156,7 @@
       </div>
 
       <!-- footer -->
-      <footer>Copyright(c) 2020 내집꾸미기. All rights reserved.</footer>
+      <footer>Copyright(c) 2022 내집꾸미기. All rights reserved.</footer>
     </div>
   </body>
 </html>
