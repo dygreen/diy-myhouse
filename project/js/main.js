@@ -27,7 +27,7 @@ function appendProducts(product, index) {
   <p class="card-brand brand-name">${product.brand_name}</p>
   </div>
   <ul class="list-group list-group-flush">
-  <li class="list-group-item">${product.price}</li>
+  <li class="list-group-item price">${product.price}</li>
   </ul>
   </div>
   `).draggable({
@@ -57,21 +57,108 @@ $("form").on("submit", (e) => {
 // toggle 버튼 - 메뉴 슬라이드 다운
 $(".toggle_btn").hover(() => $(".toggle_all").fadeToggle());
 
-// 상품 검색 기능: input에 검색어를 입력하면 그 글자를 가지고 있는 상품만 보여주기
-$(".input").on("input", () => {
-  let inputVal = $(".input").val();
-  let productName = $(".card_list").find(".product-name");
-  let cardShow = $(".card_list");
-  let brandName = $(this).find(".brand-name");
+// 장바구니 부분: drop 기능 (jquery UI)
+$(".drop-area").droppable({
+  drop: function (event, ui) {
+    let item = $(ui.draggable);
+    let index = item.attr("data-index"); // 0, 1, 2, 3
+    let img = item.find("img");
+    let productName = item.find(".product-name").text();
+    let brandName = item.find(".brand-name").text();
+    let price = item.find(".price").text();
 
-  $(".card_list").html("");
-  productArray.forEach((a, i) => {
-    if (productName[i].text().indexOf(inputVal) !== -1) {
-      cardShow[i].show();
+    // 상품 원위치 시키기
+    item.css({
+      position: "relative",
+      top: "auto",
+      left: "auto",
+    });
+
+    // 중복되는 상품이 있을 경우
+    let productInBasket = $(`#basket-list [data-index=${index}]`);
+    if (productInBasket.length) {
+      alert("이미 장바구니에 담긴 상품입니다.");
+      return;
     }
 
-    // if (productName.text().indexOf(inputVal) !== -1) {
-    //   $(`.card${i}`).
-    // }
+    //드롭했을 시 그 밑에 상품목록 생성해주기
+    let 장바구니상품 = $(`
+    <div class="card-deck">
+        <div class="card mb-3" style="max-width: 540px;" data-index="${index}">
+            <div class="row no-gutters">
+                <div class="col-md-4 overflow-hidden">
+                    <img src="${img.attr(
+                      "src"
+                    )}" class="card-img h-100 w-auto" alt="${productName}" title="${productName}">
+                </div>
+                <div class="col-md-7">
+                    <div class="card-body">
+                    <h5 class="card-title product-name">${productName}</h5>
+                    <p class="card-text brand-name">${brandName}</p>
+                    <p class="card-text"><small class="text-muted price">${price}</small></p>
+                    <p class="card-text">
+                        <div class="input-group input-group-sm mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-sm-${index}">수량</span>
+                            </div>
+                            <input type="number" min="1" value="1" class="form-control number" >
+                        </div>
+                    </p>
+                    <p class="card-text">합계 <span class="sum">${price}</span>원</p>
+                    </div>
+                </div>
+                <button type="button" class="col-md-1 btn-delete">X</button>
+            </div>
+        </div>
+    </div>
+    `);
+
+    $("#basket-list").append(장바구니상품);
+    setTotalSum();
+  },
+});
+
+//장바구니 변동될 때마다 총 금액 계산해주는 기능
+function setTotalSum() {
+  let totalSum = 0;
+
+  $("#basket-list .sum").each(function () {
+    totalSum += parseInt($(this).text(), 10);
   });
+
+  $("#total-sum").text(totalSum);
+}
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+// 상품 검색 기능: input에 검색어를 입력하면 그 글자를 가지고 있는 상품만 보여주기
+$(".input").on("input", () => {
+  // let productName = products.product_name;
+  let inputVal = $(".input").val();
+  // let cardShow = $(".card_list > div");
+  // let brandName = $(".card_list").find(".brand-name");
+
+  $(".card_list").html("");
+  if ("식기세척기".indexOf(inputVal) !== -1 && inputVal !== "") {
+    console.log(inputVal);
+  }
+
+  // $(".card_list").html("");
+  // products.forEach((i) => {
+  //   if (products[i].product_name.indexOf(inputVal) !== -1) {
+  //     cardShow.eq(i).show();
+  //   } else {
+  //     $("#msg-empty").show();
+  //   }
+  // });
 });

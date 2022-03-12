@@ -111,13 +111,15 @@
     </header>
 
       <div class="middle_content">
-        <!-- 검색 -->
+        <div class="middle_content2">
+          <!-- 검색 -->
         <input type="text" class="input" placeholder="검색어를 입력해주세요." />
 
         <div class="productAndBasket" style="display: flex; margin-top: 60px">
           <!-- 상품 리스트 -->
           <div class="product_list">
             <h1>모든 상품 리스트</h1>
+            <div id="msg-empty">일치하는 상품이 없습니다.</div>
             <div class="card_list" style="display: flex; width: 110%">
               <!-- <div class="card" style="width: 20%; margin-right: 15px">
                 <img src="https://via.placeholder.com/600" class="card-img" />
@@ -140,8 +142,10 @@
                 <div class="drop-area" style="padding: 10px">
                   이곳에 상품을 놓아주세요.
                 </div>
+                <div id="basket-list">
+                </div>
                 <div class="card-body" style="padding: 15px 5px">
-                  <p class="price" style="margin: 15px 0">총 합계</p>
+                  <p class="price" style="margin: 15px 0">총 합계 <span id="total-sum">0</span>원</p>
                   <button
                     class="btn btn-danger"
                     style="width: 100%; height: 50%"
@@ -154,6 +158,8 @@
           </div>
         </div>
       </div>
+        </div>
+        
 
       <!-- footer -->
       <footer>Copyright(c) 2022 내집꾸미기. All rights reserved.</footer>

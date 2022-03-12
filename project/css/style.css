@@ -122,6 +122,10 @@ input {
   margin-bottom: 100px;
 }
 
+.middle_content2 {
+  padding: 30px 100px;
+}
+
 .input {
   width: 100%;
   /* flex: 1 1 auto; */
@@ -132,6 +136,10 @@ input {
 }
 
 /* 상품리스트 */
+#msg-empty {
+  display: none;
+}
+
 .card-img {
   padding: 5px;
 }
