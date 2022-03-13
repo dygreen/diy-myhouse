@@ -2,11 +2,102 @@
 $(document).ready(() => firstLoad());
 
 function firstLoad() {
-  let products = []; // 장바구니 추가한 상품들을 저장하기 위한 용도
-
   // 데이터바인딩
   getProducts();
+
+  // 장바구니 부분: drop 기능 (jquery UI)
+  $(".drop-area").droppable({
+    drop: function (event, ui) {
+      let item = $(ui.draggable);
+      let index = item.attr("data-index"); // 0, 1, 2, 3
+      let img = item.find("img");
+      let productName = item.find(".product-name").text();
+      let brandName = item.find(".brand-name").text();
+      let price = item.find(".price").text();
+
+      // 상품 원위치 시키기
+      item.css({
+        position: "relative",
+        top: "auto",
+        left: "auto",
+      });
+
+      // 중복되는 상품이 있을 경우
+      let productInBasket = $(`#basket-list [data-index=${index}]`);
+      if (productInBasket.length) {
+        alert("이미 장바구니에 담긴 상품입니다.");
+        return;
+      }
+
+      //드롭했을 시 그 밑에 상품목록 생성해주기
+      let 장바구니상품 = $(`
+      <div class="card-deck">
+          <div class="card mb-3" style="max-width: 540px;" data-index="${index}">
+              <div class="row no-gutters">
+                  <div class="col-md-4 overflow-hidden ">
+                      <img src="${img.attr(
+                        "src"
+                      )}" class="card-img w-auto" alt="${productName}" title="${productName}">
+                  </div>
+                  <div class="col-md-7" >
+                      <div class="card-body">
+                      <h5 class="card-title product-name">${productName}</h5>
+                      <p class="card-text brand-name">${brandName}</p>
+                      <p class="card-text"><small class="text-muted price">${price}</small></p>
+                      <p class="card-text">
+                          <div class="input-group input-group-sm mb-3">
+                              <div class="input-group-prepend">
+                                  <span class="input-group-text" id="inputGroup-sizing-sm-${index}">수량</span>
+                              </div>
+                              <input type="number" min="1" value="1" class="form-control number" >
+                          </div>
+                      </p>
+                      <p class="card-text">합계 <span class="sum">${price}</span>원</p>
+                      </div>
+                  </div>
+                  <button type="button" class="col-md-1 btn-delete ">X</button>
+              </div>
+          </div>
+      </div>
+      `);
+
+      // x 버튼을 누르면 (장바구니에서) 해당 항목 삭제
+      장바구니상품.find("button.btn-delete").click(() => {
+        장바구니상품.remove(); // .hide()도 가능
+        setTotalSum();
+      });
+
+      // 장바구니 '수량'에 따른 합계 계산
+      장바구니상품.find("input[type='number']").on("keyup change", function () {
+        let valueSum = parseInt(price, 10) * $(this).val();
+        장바구니상품.find(".sum").text(valueSum);
+
+        setTotalSum();
+      });
+      // keyup과 change를 같이 써야 자동완성될 때 이벤트가 발동 안할 경우 대비 가능
+
+      // 장바구니 리스트에 붙여넣기
+      $("#basket-list").append(장바구니상품);
+      setTotalSum();
+    },
+  });
 }
+
+//장바구니 변동될 때마다 '총 금액' 계산해주는 기능
+function setTotalSum() {
+  let totalSum = 0;
+
+  $("#basket-list .sum").each(function () {
+    totalSum += parseInt($(this).text(), 10);
+  });
+
+  $("#total-sum").text(totalSum);
+}
+
+//
+//
+//
+//
 
 // 데이터바인딩(json파일에 있는 데이터를 ajax get 요청하기)
 function getProducts() {
@@ -57,78 +148,6 @@ $("form").on("submit", (e) => {
 // toggle 버튼 - 메뉴 슬라이드 다운
 $(".toggle_btn").hover(() => $(".toggle_all").fadeToggle());
 
-// 장바구니 부분: drop 기능 (jquery UI)
-$(".drop-area").droppable({
-  drop: function (event, ui) {
-    let item = $(ui.draggable);
-    let index = item.attr("data-index"); // 0, 1, 2, 3
-    let img = item.find("img");
-    let productName = item.find(".product-name").text();
-    let brandName = item.find(".brand-name").text();
-    let price = item.find(".price").text();
-
-    // 상품 원위치 시키기
-    item.css({
-      position: "relative",
-      top: "auto",
-      left: "auto",
-    });
-
-    // 중복되는 상품이 있을 경우
-    let productInBasket = $(`#basket-list [data-index=${index}]`);
-    if (productInBasket.length) {
-      alert("이미 장바구니에 담긴 상품입니다.");
-      return;
-    }
-
-    //드롭했을 시 그 밑에 상품목록 생성해주기
-    let 장바구니상품 = $(`
-    <div class="card-deck">
-        <div class="card mb-3" style="max-width: 540px;" data-index="${index}">
-            <div class="row no-gutters">
-                <div class="col-md-4 overflow-hidden">
-                    <img src="${img.attr(
-                      "src"
-                    )}" class="card-img h-100 w-auto" alt="${productName}" title="${productName}">
-                </div>
-                <div class="col-md-7">
-                    <div class="card-body">
-                    <h5 class="card-title product-name">${productName}</h5>
-                    <p class="card-text brand-name">${brandName}</p>
-                    <p class="card-text"><small class="text-muted price">${price}</small></p>
-                    <p class="card-text">
-                        <div class="input-group input-group-sm mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroup-sizing-sm-${index}">수량</span>
-                            </div>
-                            <input type="number" min="1" value="1" class="form-control number" >
-                        </div>
-                    </p>
-                    <p class="card-text">합계 <span class="sum">${price}</span>원</p>
-                    </div>
-                </div>
-                <button type="button" class="col-md-1 btn-delete">X</button>
-            </div>
-        </div>
-    </div>
-    `);
-
-    $("#basket-list").append(장바구니상품);
-    setTotalSum();
-  },
-});
-
-//장바구니 변동될 때마다 총 금액 계산해주는 기능
-function setTotalSum() {
-  let totalSum = 0;
-
-  $("#basket-list .sum").each(function () {
-    totalSum += parseInt($(this).text(), 10);
-  });
-
-  $("#total-sum").text(totalSum);
-}
-
 //
 //
 //
@@ -142,23 +161,55 @@ function setTotalSum() {
 //
 
 // 상품 검색 기능: input에 검색어를 입력하면 그 글자를 가지고 있는 상품만 보여주기
-$(".input").on("input", () => {
-  // let productName = products.product_name;
-  let inputVal = $(".input").val();
-  // let cardShow = $(".card_list > div");
-  // let brandName = $(".card_list").find(".brand-name");
+$("input.search").on("input", function () {
+  let input = $(this).val();
+  let productName = $(".card_list").find(".product-name");
+  let brandName = $(".card_list").find(".brand-name");
 
-  $(".card_list").html("");
-  if ("식기세척기".indexOf(inputVal) !== -1 && inputVal !== "") {
-    console.log(inputVal);
-  }
+  // 검색을 시작하면 상품 리스트 숨기기
 
-  // $(".card_list").html("");
-  // products.forEach((i) => {
-  //   if (products[i].product_name.indexOf(inputVal) !== -1) {
-  //     cardShow.eq(i).show();
-  //   } else {
-  //     $("#msg-empty").show();
-  //   }
-  // });
+  // 검색어와 일치하는 상품 보여주기
+  $(".card_list > div").each(() => {
+    if (
+      productName.text().indexOf(input) !== -1 &&
+      productName.text().indexOf(input) !== ""
+    ) {
+      $(this).show();
+    } else if (
+      brandName.text().indexOf(input) !== -1 &&
+      brandName.text().indexOf(input) !== ""
+    ) {
+      $(this).show();
+    } else {
+      $("#msg-empty").show();
+    }
+  });
 });
+
+//
+//
+//
+//
+//
+//
+
+// $(".input").on("input", () => {
+//   // let productName = products.product_name;
+//   let inputVal = $(".input").val();
+//   // let cardShow = $(".card_list > div");
+//   // let brandName = $(".card_list").find(".brand-name");
+
+//   $(".card_list").html("");
+//   if ("식기세척기".indexOf(inputVal) !== -1 && inputVal !== "") {
+//     console.log(inputVal);
+//   }
+
+//   // $(".card_list").html("");
+//   // products.forEach((i) => {
+//   //   if (products[i].product_name.indexOf(inputVal) !== -1) {
+//   //     cardShow.eq(i).show();
+//   //   } else {
+//   //     $("#msg-empty").show();
+//   //   }
+//   // });
+// });
