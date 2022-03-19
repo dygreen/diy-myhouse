@@ -162,27 +162,52 @@ $(".toggle_btn").hover(() => $(".toggle_all").fadeToggle());
 
 // 상품 검색 기능: input에 검색어를 입력하면 그 글자를 가지고 있는 상품만 보여주기
 $("input.search").on("input", function () {
-  let input = $(this).val();
+  let input = $("input.search").val();
   let productName = $(".card_list").find(".product-name");
   let brandName = $(".card_list").find(".brand-name");
+  let card = $(".card_list").find(".cardView");
 
   // 검색을 시작하면 상품 리스트 숨기기
 
   // 검색어와 일치하는 상품 보여주기
-  $(".card_list > div").each(() => {
+  $(".card_list").html("");
+  $(".card_list > div").each(function () {
     if (
-      productName.text().indexOf(input) !== -1 &&
-      productName.text().indexOf(input) !== ""
+      productName.text().indexOf(input) !== -1 ||
+      brandName.text().indexOf(input) !== -1
     ) {
-      $(this).show();
-    } else if (
-      brandName.text().indexOf(input) !== -1 &&
-      brandName.text().indexOf(input) !== ""
-    ) {
-      $(this).show();
+      const prHighLight = productName
+        .text()
+        .replace(input, `<span class='highlight'>${input}</span>`);
+      productName.html(prHighLight);
+      $(this).css("display", "block");
+      // card.eq(1).show();
+      // card.eq(1).show();
+      $("#msg-empty").hide();
     } else {
       $("#msg-empty").show();
     }
+
+    //
+    //
+    //
+    // if (productName.text().indexOf(input) !== -1) {
+    //   productName.find($(".card_list > div")).css("display", "block");
+    //   // $(".card_list > div")
+    //   // $(this).css("display", "block");
+    //   console.log("yes");
+    //   $("#msg-empty").hide();
+    //   // $(this).show(); // this 고민하기!
+    // } //else {
+    // //$("#msg-empty").show();
+    // //}
+    // else if (brandName.text().indexOf(input) !== -1) {
+    //   console.log("no");
+    //   // $(".card_list > div").css("display", "block");
+    //   $("#msg-empty").hide();
+    // } else {
+    //   $("#msg-empty").show();
+    // }
   });
 });
 
