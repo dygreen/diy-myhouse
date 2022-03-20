@@ -135,6 +135,11 @@ input {
   border-radius: 5px;
 }
 
+.highlight {
+  background-color: yellow;
+}
+
+
 /* 상품리스트 */
 #msg-empty {
   display: none;
@@ -146,6 +151,40 @@ input {
 
 .product_list {
   flex: 1 1 70%;
+}
+
+/* 장바구니 - 구매자 정보 입력 */
+.buyerContainer {
+  position: relative;
+  display: none;
+}
+
+.buyer {
+  padding: 10px;
+  background-color: var(--accent-color);
+  color: var(--white-color);
+  border-radius: 10px;
+  position: absolute;
+  right: 40px;
+  margin-top: 10px;
+}
+
+.buyerInfo {
+  font-size: 20px;
+}
+
+label {
+  margin-top: 5px;
+}
+
+label > input {
+  border-radius: 5px;
+  border-color: var(--white-color);
+}
+
+.buttonGroup {
+  margin-top: 20px;
+  margin-left: 90px;
 }
 
 /* 장바구니 */
@@ -164,6 +203,16 @@ input {
   flex: 1 1 30%;
 }
 
+/* 영수증 이미지 */
+.receipt {
+  position: absolute;
+  top: 40%;
+  left: 30%;
+  background-color: var(--white-color);
+  border-radius: 5px;
+  border: solid 1px var(--grey-color);
+}
+
 /* footer */
 footer {
   width: 100%;
@@ -171,6 +220,19 @@ footer {
   padding: 40px 15px;
   color: var(--white-color);
 }
+
+/* 영수증 */
+.receipt > #receiptBtn {
+  position: absolute;
+  top: 30px;
+  right: 5%;
+  border: 1px;
+  background-color: var(--accent-color);
+  color: var(--white-color);
+  padding: 5px 10px;
+  display: none;
+}
+
 
 /* toggle */
 .toggle_all {

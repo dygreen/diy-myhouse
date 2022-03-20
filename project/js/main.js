@@ -74,7 +74,7 @@ function firstLoad() {
 
         setTotalSum();
       });
-      // keyup과 change를 같이 써야 자동완성될 때 이벤트가 발동 안할 경우 대비 가능
+      // *(keyup과 change를 같이 써야 자동완성될 때 이벤트가 발동 안할 경우 대비 가능)
 
       // 장바구니 리스트에 붙여넣기
       $("#basket-list").append(장바구니상품);
@@ -94,8 +94,6 @@ function setTotalSum() {
   $("#total-sum").text(totalSum);
 }
 
-//
-//
 //
 //
 
@@ -129,6 +127,9 @@ function appendProducts(product, index) {
   $(".card_list").append(newItem);
 }
 
+// 
+// 
+
 // 모달창: login 버튼을 누르면 로그인창 띄우기/닫기 버튼 누르면 닫기/빈칸 알람 띄우기
 $(".login").click(() => $(".black-background").fadeIn());
 $("#close").click(() => $(".black-background").fadeOut());
@@ -145,48 +146,132 @@ $("form").on("submit", (e) => {
   }
 });
 
+
 // toggle 버튼 - 메뉴 슬라이드 다운
 $(".toggle_btn").hover(() => $(".toggle_all").fadeToggle());
 
 //
 //
-//
-//
-//
-//
-//
-//
-//
+
+
+// 구매하기 버튼: 장바구니 비었음 알림 / 구매자 정보 입력 모달창
+$('.buyBtn').click(() => {
+  let basketList = $('#basket-list *');
+  if( basketList.length === 0) {
+    alert('장바구니가 비어있습니다.');
+    return;
+  } else {
+    $('.buyerContainer').fadeIn();
+  }
+})
+
+
+// 구매자 정보 입력: 닫기 버튼 / 구매완료 버튼
+// 닫기 버튼
+$('#close2').click(() => $('.buyerContainer').fadeOut());
+// 구매완료 버튼
+$('#buySuccess').click(() => Receipt());
+
+// 
+// 
+
+// 영수증 이미지: 구매한 물품을 영수증으로 보여주기
+function Receipt() {
+  $('.receipt').show();
+  $('#receiptBtn').show();
+  
+  // canvas 설정
+  let canvas = document.getElementById('canvas');
+  let c = canvas.getContext('2d');
+  $('#canvas').attr('width', '500').attr('height', '700');
+
+  // 영수증
+  c.font = 'bold 18px Malgun Gothic';
+  c.fillText('영수증', 20, 50);
+
+  // 날짜
+  let date = new Date();
+  c.font = 'bold 14px Malgun Gothic';
+  c.fillText(date, 20, 80);
+
+  // 구매 물품
+  $('#basket-list > div').each(function(i) {
+    let productName = $(this).find('.product-name').text();
+    let brandName = $(this).find('.brand-name').text();
+    let price = $(this).find('.price').text();
+    let number = $(this).find('.number').val();
+    let sum = $(this).find('.sum').text();
+
+    c.fillText(productName, 20, 120 * (i + 1));
+    c.fillText(brandName, 20, 120 * (i + 1) + 20);
+    c.fillText(`가격: ${price}`, 20, 120 * (i + 1) + 40);
+    c.fillText(`수량: ${number}`, 20, 120 * (i + 1) + 60);
+    c.fillText(`합계: ${sum}`, 20, 120 * (i + 1) + 80);
+  });
+
+  // 총 합계
+  let totalSum = $('#total-sum').text();
+  c.fillText(`총 합계: ${totalSum}`, 20, 650);
+
+  // 닫기 버튼
+  $('#receiptBtn').click(() => {$('.receipt').fadeOut()})
+}
+
 //
 //
 
 // 상품 검색 기능: input에 검색어를 입력하면 그 글자를 가지고 있는 상품만 보여주기
 $("input.search").on("input", function () {
   let input = $("input.search").val();
-  let productName = $(".card_list").find(".product-name");
-  let brandName = $(".card_list").find(".brand-name");
-  let card = $(".card_list").find(".cardView");
-
-  // 검색을 시작하면 상품 리스트 숨기기
-
+  
   // 검색어와 일치하는 상품 보여주기
-  $(".card_list").html("");
-  $(".card_list > div").each(function () {
-    if (
-      productName.text().indexOf(input) !== -1 ||
-      brandName.text().indexOf(input) !== -1
-    ) {
-      const prHighLight = productName
-        .text()
-        .replace(input, `<span class='highlight'>${input}</span>`);
-      productName.html(prHighLight);
-      $(this).css("display", "block");
-      // card.eq(1).show();
-      // card.eq(1).show();
-      $("#msg-empty").hide();
+  $(".card_list > div").each(function() {
+    let productName = $(this).find(".product-name");
+    let brandName = $(this).find(".brand-name");
+    let card = $(this);
+
+    if ( input === '' ) {
+      $('#msg-empty').hide();
+      $('.card_list').show();
+      return;
+    } else {
+      $('.card_list').hide();
+    }
+
+
+    if ( productName.text().indexOf(input) !== -1 ) {
+      let pnHighlight = productName.text().replace(input, `<span class='highlight'>${input}</span>`);
+      productName.html(pnHighlight);
+      card.css('display', 'block');
+      console.log(card);
+    } else if ( brandName.text().indexOf(input) !== -1) {
+      let bnHighlight = brandName.text().replace(input, `<span class='highlight'>${input}</span>`);
+      brandName.html(bnHighlight);
+      $(this).show();
     } else {
       $("#msg-empty").show();
     }
+
+
+
+
+
+
+    // if (
+    //   productName.text().indexOf(input) !== -1 ||
+    //   brandName.text().indexOf(input) !== -1
+    // ) {
+    //   const prHighLight = productName
+    //     .text()
+    //     .replace(input, `<span class='highlight'>${input}</span>`);
+    //   productName.html(prHighLight);
+    //   $(this).css("display", "block");
+    //   // card.eq(1).show();
+    //   // card.eq(1).show();
+    //   $("#msg-empty").hide();
+    // } else {
+    //   $("#msg-empty").show();
+    // }
 
     //
     //

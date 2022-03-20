@@ -132,7 +132,30 @@
                 </ul>
               </div> -->
             </div>
+
+            <!-- 구매자 정보 입력: 구매하기 버튼 클릭시 나타나는 모달창 -->
+            <div class="buyerContainer">
+              <div class="buyer">
+                <p class="buyerInfo">구매자 정보</p>
+                <form>
+                  <div class="form-group">
+                    <label for="name">이름
+                      <input type="text" id="name" class="buyerName">
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <label for="address">주소
+                      <input type="text" id="address" class="buyerAddress">
+                    </label>
+                  </div>
+                  <div class="buttonGroup">
+                    <button type="submit" class="btn btn-primary" id="buySuccess">구매완료</button>
+                    <button class="btn btn-danger" id="close2">닫기</button>
+                  </div>
+                </form>
+              </div>
           </div>
+            </div>
 
           <!-- 장바구니 -->
           <div class="basket">
@@ -147,7 +170,7 @@
                 <div class="card-body" style="padding: 15px 5px">
                   <p class="price2" style="margin: 15px 0">총 합계 <span id="total-sum">0</span>원</p>
                   <button
-                    class="btn btn-danger"
+                    class="btn btn-danger buyBtn"
                     style="width: 100%; height: 50%"
                   >
                     구매하기
@@ -155,14 +178,19 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div>      
         </div>
       </div>
-        </div>
-        
-
-      <!-- footer -->
-      <footer>Copyright(c) 2022 내집꾸미기. All rights reserved.</footer>
     </div>
+  </div>
+    
+    <!-- footer -->
+    <footer>Copyright(c) 2022 내집꾸미기. All rights reserved.</footer>
+  
+  <!-- 영수증 이미지 -->
+  <div class="receipt" style="display: none;"> 
+   <canvas id="canvas"></canvas>
+   <button id="receiptBtn">닫기</button>
+  </div>
   </body>
 </html>
