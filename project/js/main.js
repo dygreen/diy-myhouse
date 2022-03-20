@@ -221,7 +221,7 @@ function Receipt() {
 //
 
 // 상품 검색 기능: input에 검색어를 입력하면 그 글자를 가지고 있는 상품만 보여주기
-$("input.search").on("input", function () {
+$("input.search").on("input", function() {
   let input = $("input.search").val();
   
   // 검색어와 일치하는 상품 보여주기
@@ -230,6 +230,7 @@ $("input.search").on("input", function () {
     let brandName = $(this).find(".brand-name");
     let card = $(this);
 
+    // 아무것도 입력 안했을 때
     if ( input === '' ) {
       $('#msg-empty').hide();
       $('.card_list').show();
@@ -238,19 +239,23 @@ $("input.search").on("input", function () {
       $('.card_list').hide();
     }
 
-
+    // 입력했을 때
     if ( productName.text().indexOf(input) !== -1 ) {
-      let pnHighlight = productName.text().replace(input, `<span class='highlight'>${input}</span>`);
+      let pnHighlight = productName.text().replace(input, `<span class="highlight">${input}</span>`);
       productName.html(pnHighlight);
       card.css('display', 'block');
-      console.log(card);
-    } else if ( brandName.text().indexOf(input) !== -1) {
-      let bnHighlight = brandName.text().replace(input, `<span class='highlight'>${input}</span>`);
+      $('#msg-empty').hide();
+    } 
+    
+    if ( brandName.text().indexOf(input) !== -1) {
+      let bnHighlight = brandName.text().replace(input, `<span class="highlight">${input}</span>`);
       brandName.html(bnHighlight);
-      $(this).show();
-    } else {
-      $("#msg-empty").show();
+      card.css('display', 'block');
+      $('#msg-empty').hide();
     }
+  });
+});
+
 
 
 
@@ -293,8 +298,6 @@ $("input.search").on("input", function () {
     // } else {
     //   $("#msg-empty").show();
     // }
-  });
-});
 
 //
 //
