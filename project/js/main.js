@@ -245,15 +245,14 @@ $("input.search").on("input", function() {
       let card = $(this);
       card.css('display', 'block');
       $('#msg-empty').hide();
-    } 
-    
-    if ( brandName.text().indexOf(input) !== -1) {
+    } else if ( brandName.text().indexOf(input) !== -1) {
       let bnHighlight = brandName.text().replace(input, `<span class="highlight">${input}</span>`);
       brandName.html(bnHighlight);
       let card2 = $(this);
       card2.css('display', 'block');
       $('#msg-empty').hide();
-    }
+    } else {
+      $('#msg-empty').show();
   });
 });
 
