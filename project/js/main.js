@@ -228,7 +228,6 @@ $("input.search").on("input", function() {
   $(".card_list > div").each(function() {
     let productName = $(this).find(".product-name");
     let brandName = $(this).find(".brand-name");
-    let card = $(this);
 
     // 아무것도 입력 안했을 때
     if ( input === '' ) {
@@ -243,6 +242,7 @@ $("input.search").on("input", function() {
     if ( productName.text().indexOf(input) !== -1 ) {
       let pnHighlight = productName.text().replace(input, `<span class="highlight">${input}</span>`);
       productName.html(pnHighlight);
+      let card = $(this);
       card.css('display', 'block');
       $('#msg-empty').hide();
     } 
@@ -250,7 +250,8 @@ $("input.search").on("input", function() {
     if ( brandName.text().indexOf(input) !== -1) {
       let bnHighlight = brandName.text().replace(input, `<span class="highlight">${input}</span>`);
       brandName.html(bnHighlight);
-      card.css('display', 'block');
+      let card2 = $(this);
+      card2.css('display', 'block');
       $('#msg-empty').hide();
     }
   });
