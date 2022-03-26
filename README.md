@@ -9,4 +9,4 @@
 7) 구매자 정보 입력창: 구매하기 버튼을 누르면 이름/주소를 입력할 수 있는 모달창 띄우기
 8) 영수증 이미지 출력(<canvas>): 구매자 정보 입력 후 구매완료 버튼을 누르면 영수증 출력
 
-* 자세한 프로젝트 실행 과정: https://prickle-turn-785.notion.site/3d30b8e1398f47b5a90e2ef8a2594d6c
+* 자세한 프로젝트 실행 과정(notion-내집꾸미기): https://prickle-turn-785.notion.site/3d30b8e1398f47b5a90e2ef8a2594d6c
