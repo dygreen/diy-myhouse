@@ -223,106 +223,43 @@ function Receipt() {
 // 상품 검색 기능: input에 검색어를 입력하면 그 글자를 가지고 있는 상품만 보여주기
 $("input.search").on("input", function() {
   let input = $("input.search").val();
+  let count = 0;
   
   // 검색어와 일치하는 상품 보여주기
   $(".card_list > div").each(function() {
     let productName = $(this).find(".product-name");
     let brandName = $(this).find(".brand-name");
-
+    
     // 아무것도 입력 안했을 때
     if ( input === '' ) {
       $('#msg-empty').hide();
-      $('.card_list').show();
+      $(this).show();
       return;
     } else {
-      $('.card_list').hide();
+      $(this).hide();
     }
-
+        
     // 입력했을 때
     if ( productName.text().indexOf(input) !== -1 ) {
       let pnHighlight = productName.text().replace(input, `<span class="highlight">${input}</span>`);
       productName.html(pnHighlight);
-    
-      $('#msg-empty').hide();
+      $(this).css('display', 'block');
+      console.log($(this));
+      count++;
     } else if ( brandName.text().indexOf(input) !== -1) {
       let bnHighlight = brandName.text().replace(input, `<span class="highlight">${input}</span>`);
       brandName.html(bnHighlight);
-      
-      // $('.card_list').append($(this));
-      $('#msg-empty').hide();
-    } else {
-      $('#msg-empty').show();
-    }
+      $(this).css('display', 'block');  
+      console.log($(this));
+      count++;
+    } 
   });
+
+  // 일치하는 상품이 없다는 메시지 보이기: count가 0일 때
+  if ( count === 0 ) {
+    $('#msg-empty').show();
+  } else {
+    $('#msg-empty').hide();
+  }
+
 });
-
-
-
-
-
-
-
-    // if (
-    //   productName.text().indexOf(input) !== -1 ||
-    //   brandName.text().indexOf(input) !== -1
-    // ) {
-    //   const prHighLight = productName
-    //     .text()
-    //     .replace(input, `<span class='highlight'>${input}</span>`);
-    //   productName.html(prHighLight);
-    //   $(this).css("display", "block");
-    //   // card.eq(1).show();
-    //   // card.eq(1).show();
-    //   $("#msg-empty").hide();
-    // } else {
-    //   $("#msg-empty").show();
-    // }
-
-    //
-    //
-    //
-    // if (productName.text().indexOf(input) !== -1) {
-    //   productName.find($(".card_list > div")).css("display", "block");
-    //   // $(".card_list > div")
-    //   // $(this).css("display", "block");
-    //   console.log("yes");
-    //   $("#msg-empty").hide();
-    //   // $(this).show(); // this 고민하기!
-    // } //else {
-    // //$("#msg-empty").show();
-    // //}
-    // else if (brandName.text().indexOf(input) !== -1) {
-    //   console.log("no");
-    //   // $(".card_list > div").css("display", "block");
-    //   $("#msg-empty").hide();
-    // } else {
-    //   $("#msg-empty").show();
-    // }
-
-//
-//
-//
-//
-//
-//
-
-// $(".input").on("input", () => {
-//   // let productName = products.product_name;
-//   let inputVal = $(".input").val();
-//   // let cardShow = $(".card_list > div");
-//   // let brandName = $(".card_list").find(".brand-name");
-
-//   $(".card_list").html("");
-//   if ("식기세척기".indexOf(inputVal) !== -1 && inputVal !== "") {
-//     console.log(inputVal);
-//   }
-
-//   // $(".card_list").html("");
-//   // products.forEach((i) => {
-//   //   if (products[i].product_name.indexOf(inputVal) !== -1) {
-//   //     cardShow.eq(i).show();
-//   //   } else {
-//   //     $("#msg-empty").show();
-//   //   }
-//   // });
-// });

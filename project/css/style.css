@@ -1,4 +1,3 @@
-@charset "utf-8";
 @font-face {
   font-family: "Cafe24Ohsquareair";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202@1.0/Cafe24Ohsquareair.woff")
@@ -43,7 +42,6 @@ a {
 
 button,
 button:focus {
-  /* border: none; */
   cursor: pointer;
   outline: none;
   background-color: var(--white-color);
@@ -69,10 +67,14 @@ input {
 
 .white-background {
   background: white;
-  width: 80%;
+  width: 30%;
   margin: 100px auto;
   padding: 20px;
   border-radius: 10px;
+}
+
+input[type=password] {
+  margin-bottom: 15px;
 }
 
 /* 로고 */
@@ -105,7 +107,7 @@ input {
 }
 
 .nav_link {
-  padding: 5px; /*hover시 옆으로 밀리는 것을 방지하기 위해 미리 padding 넣음*/
+  padding: 5px;
 }
 
 .nav_link:hover {
@@ -133,9 +135,7 @@ input {
 
 .search {
   width: 100%;
-  /* flex: 1 1 auto; */
-  /* min-width: 0; */
-  /* margin-bottom: 0; */
+  text-indent: 10px;
   padding: 5px;
   border-radius: 5px;
 }
