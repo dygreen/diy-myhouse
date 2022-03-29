@@ -1,5 +1,7 @@
 # ShoppingMall: HTML, CSS, JS
 [개인 프로젝트: 2022.03.05 ~ 2022.03.27]
+주소: https://dygreen.github.io/ShoppingMall-HTML-CSS-JS/project/index.html
+
 1) 데이터바인딩으로 쇼핑몰 상품 나열: json 파일에 있는 데이터를 ajax get 요청
 2) jquery UI ".draggable" 이용: drag 기능 사용
 3) login 모달창 제작: 로그인 버튼 누르면 모달창 띄우기, 닫기 버튼, 이메일/비번 빈칸 알람 띄우기
