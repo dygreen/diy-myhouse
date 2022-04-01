@@ -1,5 +1,6 @@
 # ShoppingMall: HTML, CSS, JS
-여러 기능이 포함된 쇼핑몰 페이지 
+**여러 기능이 포함된 쇼핑몰 페이지 제작**
+
 [개인 프로젝트: 2022.03.05 ~ 2022.03.27]
 * 주소: https://dygreen.github.io/ShoppingMall-HTML-CSS-JS/project/index.html
 
