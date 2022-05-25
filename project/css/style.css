@@ -1,7 +1,6 @@
 @font-face {
-  font-family: "Cafe24Ohsquareair";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202@1.0/Cafe24Ohsquareair.woff")
-    format("woff");
+  font-family: 'Tium';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_220508@1.0/Tium.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
@@ -11,7 +10,7 @@
   --white-color: #f7f7f7;
   --grey-color: #4b4b4b;
   --main-color: #e3caa5;
-  --accent-color: #ad8b73;
+  --accent-color: #112B3C;
   --background-color: #fffbe9;
 
   /* Font Size */
@@ -28,7 +27,7 @@
 }
 
 body {
-  font-family: "Cafe24Ohsquareair";
+  font-family: 'Tium';
 }
 
 ul {
@@ -59,7 +58,8 @@ input {
 .black-background {
   background: rgba(0, 0, 0, 0.5);
   position: fixed;
-  z-index: 5; /* 5이상 써야됨 (bootstrap이 1~4까지 쓰고 있기 때문에, bootstrap의 모든 사항보다 앞에 존재하게 됨) */
+  z-index: 5;
+  /* 5이상 써야됨 (bootstrap이 1~4까지 쓰고 있기 때문에, bootstrap의 모든 사항보다 앞에 존재하게 됨) */
   width: 100%;
   height: 100%;
   display: none;
@@ -182,7 +182,7 @@ label {
   margin-top: 5px;
 }
 
-label > input {
+label>input {
   border-radius: 5px;
   border-color: var(--white-color);
 }
@@ -227,7 +227,7 @@ footer {
 }
 
 /* 영수증 */
-.receipt > #receiptBtn {
+.receipt>#receiptBtn {
   position: absolute;
   top: 30px;
   right: 5%;
