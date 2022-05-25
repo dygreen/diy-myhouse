@@ -8,6 +8,7 @@
 ***
 
 ***Info***
+* bootstrap을 활용해 UI 구성
 * 데이터바인딩으로 쇼핑몰 상품 나열: json 파일에 있는 데이터 ajax get 요청
 * jquery UI ".draggable" 이용: drag 기능 사용
 * login 모달창 제작: 로그인 버튼 누르면 모달창 띄우기, 닫기 버튼, 이메일/비번 빈칸 알림
