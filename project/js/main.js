@@ -61,7 +61,7 @@ function firstLoad() {
       </div>
       `);
 
-      // x 버튼을 누르면 (장바구니에서) 해당 항목 삭제
+      // x 버튼을 누르면 (장바구니에서) 해당 항목 삭제+계산
       장바구니상품.find("button.btn-delete").click(() => {
         장바구니상품.remove(); // .hide()도 가능
         setTotalSum();
@@ -99,7 +99,7 @@ function setTotalSum() {
 
 // 데이터바인딩(json파일에 있는 데이터를 ajax get 요청하기)
 function getProducts() {
-  $.get("resources1/store.json").done((data) => {
+  $.get("resources/store.json").done((data) => {
     data.products.forEach((상품, i) => {
       appendProducts(상품, i);
     });
@@ -110,7 +110,7 @@ function getProducts() {
 function appendProducts(product, index) {
   let newItem = $(`
   <div class="card cardView" data-index="${index}" style="width: 20%; margin-right: 15px">
-  <img src="resources1/${product.photo}" class="card-img" />
+  <img src="resources/${product.photo}" class="card-img" />
   <div class="card-body">
   <h5 class="card-product product-name">${product.product_name}</h5>
   <p class="card-brand brand-name">${product.brand_name}</p>
@@ -130,7 +130,7 @@ function appendProducts(product, index) {
 // 
 // 
 
-// 모달창: login 버튼을 누르면 로그인창 띄우기/닫기 버튼 누르면 닫기/빈칸 알람 띄우기
+// 로그인 모달창: login 버튼을 누르면 로그인창 띄우기/닫기 버튼 누르면 닫기/빈칸 알람 띄우기
 $(".login").click(() => $(".black-background").fadeIn());
 $("#close").click(() => $(".black-background").fadeOut());
 $("form").on("submit", (e) => {
@@ -146,9 +146,16 @@ $("form").on("submit", (e) => {
   }
 });
 
+// 로그인 모달창: 검은 배경을 클릭하면 닫히는 기능
+document.querySelector(".black-background").addEventListener("click", function(e){
+  if(e.target == this){
+    document.querySelector(".black-background").style.display = "none";
+  }
+});
 
-// toggle 버튼 - 메뉴 슬라이드 다운
-$(".toggle_btn").hover(() => $(".toggle_all").fadeToggle());
+
+// 메뉴 toggle 버튼 - 메뉴 슬라이드 다운
+$(".toggle_btn").click(() => $(".toggle_all").fadeToggle());
 
 //
 //
@@ -177,6 +184,7 @@ $('#buySuccess').click(() => Receipt());
 
 // 영수증 이미지: 구매한 물품을 영수증으로 보여주기
 function Receipt() {
+  $('.buyerContainer').hide();
   $('.receipt').show();
   $('#receiptBtn').show();
   

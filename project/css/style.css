@@ -28,6 +28,8 @@
 
 body {
   font-family: 'Tium';
+  width: 100%;
+  height: 100%;
 }
 
 ul {
@@ -59,7 +61,6 @@ input {
   background: rgba(0, 0, 0, 0.5);
   position: fixed;
   z-index: 5;
-  /* 5이상 써야됨 (bootstrap이 1~4까지 쓰고 있기 때문에, bootstrap의 모든 사항보다 앞에 존재하게 됨) */
   width: 100%;
   height: 100%;
   display: none;
@@ -68,7 +69,7 @@ input {
 .white-background {
   background: white;
   width: 30%;
-  margin: 100px auto;
+  margin: 30vh auto;
   padding: 20px;
   border-radius: 10px;
 }
@@ -79,6 +80,8 @@ input[type=password] {
 
 /* 로고 */
 .header {
+  width: 100%;
+  height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -92,34 +95,31 @@ input[type=password] {
   padding: 0;
   position: absolute;
   left: 200px;
-  top: 22%;
+  top: 30%;
 }
 
-.navbar_nav {
+.navbar ul {
   display: flex;
-  margin: 0;
-  padding: 0;
 }
 
-.navbar_nav li {
+.navbar li a{
   margin-left: 20px;
   font-size: var(--font-large);
 }
 
-.nav_link {
-  padding: 5px;
-}
-
-.nav_link:hover {
-  padding: 5px;
-  background-color: var(--main-color);
-  border-radius: 5px;
-  color: var(--grey-color);
-}
+.navbar li:hover a{color: var(--white-color);}
 
 /* 로그인 회원가입 */
 .login {
   margin-right: 5px;
+}
+
+.login, .join{
+  transition: all 0.3s;
+}
+
+.login:hover, .join:hover{
+  background: var(--main-color);
 }
 
 /* 검색 */
@@ -143,7 +143,6 @@ input[type=password] {
 .highlight {
   background-color: yellow;
 }
-
 
 /* 상품리스트 */
 #msg-empty {
@@ -213,17 +212,9 @@ label>input {
   position: absolute;
   top: 40%;
   left: 30%;
-  background-color: var(--white-color);
+  background-color: var(--main-color);
   border-radius: 5px;
   border: solid 1px var(--grey-color);
-}
-
-/* footer */
-footer {
-  width: 100%;
-  background-color: var(--accent-color);
-  padding: 40px 15px;
-  color: var(--white-color);
 }
 
 /* 영수증 */
@@ -238,16 +229,15 @@ footer {
   display: none;
 }
 
-
 /* toggle */
 .toggle_all {
   display: none;
-  /* position: relative; */
   z-index: 10;
 }
 
 .toggle_container {
-  top: 48px;
+  position: absolute;
+  top: 60px;
   left: 0;
   width: 100%;
 }
@@ -292,8 +282,16 @@ footer {
   color: var(--white-color);
 }
 
+/* footer */
+footer {
+  width: 100%;
+  background-color: var(--accent-color);
+  padding: 40px 15px;
+  color: var(--white-color);
+}
+
 @media screen and (max-width: 990px) {
-  .navbar_nav {
+  .navbar {
     display: none;
   }
 
