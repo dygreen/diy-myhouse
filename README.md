@@ -28,4 +28,4 @@
 
 
 
-### _👉 자세한 프로젝트 문제해결 과정 정리(Notion): https://prickle-turn-785.notion.site/bcd104d3f98f4493af2e60323ae9d8bf
+### _👉 자세한 프로젝트 문제해결 과정 정리(Notion): https://prickle-turn-785.notion.site/bcd104d3f98f4493af2e60323ae9d8bf_
