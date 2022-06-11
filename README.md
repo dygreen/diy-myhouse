@@ -6,8 +6,15 @@
 주소: https://dygreen.github.io/diy_myhouse/project/index.html
 
 ***
+## _Service Info_
+* drag로 장바구니 담기
+* 장바구니 상품 수량에 따른 영수증 발행
+* 검색창 입력값과 일치하는 상품만 보여줌
+* 로그인 및 구매자 정보 입력 모달창
 
-***Info***
+***
+
+## _Code Info_
 * bootstrap을 활용해 UI 구성 
 * 데이터바인딩으로 쇼핑몰 상품 나열: json 파일에 있는 데이터 `ajax get` 요청
 * jquery UI `.draggable` 이용: drag 기능 사용
@@ -19,4 +26,6 @@
 * 구매자 정보 입력창: 구매하기 버튼을 누르면 이름/주소를 입력할 수 있는 모달창 띄우기
 * 영수증 이미지 출력(`canvas`): 구매자 정보 입력 후 구매완료 버튼을 누르면 영수증 출력
 
-### _👉 자세한 프로젝트 문제해결 과정 정리(notion-내집꾸미기): https://prickle-turn-785.notion.site/3d30b8e1398f47b5a90e2ef8a2594d6c_
+
+
+### _👉 자세한 프로젝트 문제해결 과정 정리(Notion): https://prickle-turn-785.notion.site/bcd104d3f98f4493af2e60323ae9d8bf
