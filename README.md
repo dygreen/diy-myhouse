@@ -3,7 +3,7 @@
 > 
 > [개인 프로젝트: 2022.03.05 ~ 2022.03.27]
 
-주소: https://dygreen.github.io/diy_myhouse/project/index.html
+주소: https://dygreen.github.io/diy-myhouse/project/index.html
 
 ***
 ## _Service Info_
